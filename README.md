@@ -1,55 +1,81 @@
 # code2img
 
-用 **Tauri + React + TypeScript** 开发的桌面应用：把代码导出成带语法高亮主题的 PNG 图片。
+把代码片段编排成一张可分享的关系图。code2img 是一个用 **Tauri 2 + React + TypeScript** 构建的桌面应用，支持多代码节点、弧线连接、语法高亮主题和高清 PNG 导出。
 
-## 功能
+![code2img preview](public/img.png)
 
-- **多节点画布**：多个代码卡片自由排布
-- **弧线连线**：从节点四边圆点拖到另一节点，三次贝塞尔弧线关联
-- 连线可选颜色 / 标签，支持选中删除
-- 粘贴 / 编辑每个节点的代码
-- **Tab** 增加缩进，**Shift+Tab** 减少缩进（支持多行选区）
-- 20+ 代码主题、多语言高亮
-- 可调内边距、圆角、背景色、行号、窗口装饰
-- **导出节点** 或 **导出整图**（含弧线，2x PNG）
+## 特性
 
-## 开发
+- **多节点画布**：在同一画布中自由摆放多个代码卡片
+- **弧线关联**：从节点锚点拖拽连线，表达调用、依赖、导入等关系
+- **节点编辑**：左侧直接编辑代码，支持文件名、语言、主题、行号和窗口样式
+- **缩进友好**：支持 `Tab` / `Shift+Tab` 对单行或多行代码缩进
+- **细节可调**：可调整内边距、圆角、宽度、背景色等视觉参数
+- **高亮主题**：基于 Shiki 提供多语言语法高亮和多套代码主题
+- **一键导出**：支持复制单个节点或复制整图，导出适合文档、文章、PPT 的 PNG
+
+## 适合场景
+
+- 解释一段代码如何调用另一段代码
+- 为技术文章、教程、README 制作代码配图
+- 展示模块依赖、数据流、接口调用链
+- 把零散代码片段整理成更直观的视觉说明
+
+## 下载
+
+Windows release 包构建后会生成：
+
+- NSIS 安装包：`src-tauri/target/release/bundle/nsis/code2img_0.1.0_x64-setup.exe`
+- MSI 安装包：`src-tauri/target/release/bundle/msi/code2img_0.1.0_x64_en-US.msi`
+- 免安装可执行文件：`src-tauri/target/release/code2img.exe`
+
+## 本地开发
+
+环境要求：
+
+- Node.js 22+
+- Rust stable
+- Windows 需要 WebView2 与 MSVC 构建工具
+
+安装依赖：
 
 ```bash
-cd X:\1_2026_project\code2img
 npm install
-npm run tauri dev
 ```
 
-仅前端预览（浏览器）：
+启动桌面应用：
+
+```bash
+npm run tauri:dev
+```
+
+仅启动前端预览：
 
 ```bash
 npm run dev
 ```
 
-打包安装包：
+## 打包
+
+构建 Windows release 包：
 
 ```bash
-npm run tauri build
+npm run tauri:build
 ```
 
-产物位置：
-
-- 可执行文件：`src-tauri/target/release/code2img.exe`
-- 安装包：`src-tauri/target/release/bundle/nsis/code2img_0.1.0_x64-setup.exe`
-
-### 使用提示
-
-1. 左侧粘贴或编写代码
-2. **Tab** 增加缩进，**Shift+Tab** 减少缩进（支持多行选中）
-3. 选择语言与主题，调整内边距 / 圆角 / 背景 / 行号 / 窗口样式
-4. 点击 **导出 PNG**（2x 清晰度）
+如果 Cargo 下载依赖时受到系统代理影响，项目内的 `.cargo/config.toml` 会让当前项目绕过系统代理配置。
 
 ## 技术栈
 
-| 层 | 技术 |
-|---|---|
-| 桌面壳 | Tauri 2 |
-| UI | React 19 + Vite |
-| 高亮 | Shiki |
-| 截图 | modern-screenshot |
+| 模块 | 技术 |
+| --- | --- |
+| 桌面应用 | Tauri 2 |
+| 前端框架 | React 19 |
+| 构建工具 | Vite |
+| 语言 | TypeScript |
+| 代码高亮 | Shiki |
+| 图片导出 | modern-screenshot |
+
+## License
+
+暂未指定开源许可证。
