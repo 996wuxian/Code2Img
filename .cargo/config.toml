@@ -1,0 +1,3 @@
+[http]
+# Avoid Cargo inheriting an unavailable Windows system proxy for this project.
+proxy = ""
