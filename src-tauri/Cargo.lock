@@ -467,7 +467,7 @@ dependencies = [
 
 [[package]]
 name = "code2img"
-version = "0.1.2"
+version = "0.1.3"
 dependencies = [
  "serde",
  "serde_json",

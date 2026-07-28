@@ -35,8 +35,8 @@
 
 Windows release 包构建后会生成：
 
-- NSIS 安装包：`src-tauri/target/release/bundle/nsis/code2img_0.1.2_x64-setup.exe`
-- MSI 安装包：`src-tauri/target/release/bundle/msi/code2img_0.1.2_x64_en-US.msi`
+- NSIS 安装包：`src-tauri/target/release/bundle/nsis/code2img_0.1.3_x64-setup.exe`
+- MSI 安装包：`src-tauri/target/release/bundle/msi/code2img_0.1.3_x64_en-US.msi`
 - 免安装可执行文件：`src-tauri/target/release/code2img.exe`
 
 ## 本地开发
