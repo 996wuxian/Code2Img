@@ -25,8 +25,8 @@
 
 Windows release 包构建后会生成：
 
-- NSIS 安装包：`src-tauri/target/release/bundle/nsis/code2img_0.1.0_x64-setup.exe`
-- MSI 安装包：`src-tauri/target/release/bundle/msi/code2img_0.1.0_x64_en-US.msi`
+- NSIS 安装包：`src-tauri/target/release/bundle/nsis/code2img_0.1.1_x64-setup.exe`
+- MSI 安装包：`src-tauri/target/release/bundle/msi/code2img_0.1.1_x64_en-US.msi`
 - 免安装可执行文件：`src-tauri/target/release/code2img.exe`
 
 ## 本地开发
@@ -78,4 +78,4 @@ npm run tauri:build
 
 ## License
 
-暂未指定开源许可证。
+MIT License

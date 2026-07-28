@@ -13,6 +13,10 @@
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
   --radius: 16px;
   --titlebar-height: 44px;
+  --scrollbar-size: 10px;
+  --scrollbar-track: rgba(255, 255, 255, 0.035);
+  --scrollbar-thumb: rgba(148, 163, 184, 0.42);
+  --scrollbar-thumb-hover: rgba(148, 163, 184, 0.64);
   font-family:
     "Segoe UI",
     "PingFang SC",
@@ -37,10 +41,40 @@
   --accent-2: #6d5dfc;
   --danger: #dc3f55;
   --shadow: 0 24px 70px rgba(15, 23, 42, 0.13);
+  --scrollbar-track: rgba(15, 23, 42, 0.035);
+  --scrollbar-thumb: rgba(100, 116, 139, 0.32);
+  --scrollbar-thumb-hover: rgba(79, 110, 247, 0.5);
 }
 
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  min-height: 40px;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background-color: var(--scrollbar-thumb);
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 html,
@@ -929,6 +963,24 @@ input[type="color"] {
   color: transparent;
   caret-color: var(--editor-caret-color, #e8ecf5);
   outline: none;
+  scrollbar-color: color-mix(in srgb, var(--editor-caret-color, #e8ecf5) 36%, transparent)
+    transparent;
+}
+
+.code-input::-webkit-scrollbar-thumb {
+  background-color: color-mix(
+    in srgb,
+    var(--editor-caret-color, #e8ecf5) 34%,
+    transparent
+  );
+}
+
+.code-input::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--editor-caret-color, #e8ecf5) 54%,
+    transparent
+  );
 }
 
 .code-input::selection {
@@ -1150,6 +1202,25 @@ input[type="color"] {
   overflow: auto;
   position: relative;
   overscroll-behavior: contain;
+  scrollbar-color: rgba(203, 213, 225, 0.48) transparent;
+}
+
+.node-canvas::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.node-canvas::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+.node-canvas::-webkit-scrollbar-thumb {
+  border-width: 3px;
+  background-color: rgba(203, 213, 225, 0.46);
+}
+
+.node-canvas::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(226, 232, 240, 0.68);
 }
 
 .node-canvas.is-space-panning,
