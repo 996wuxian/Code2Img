@@ -374,48 +374,38 @@ function App() {
     setError(null);
     setStatus(null);
 
-    const prev = {
-      width: el.style.width,
-      height: el.style.height,
-      minWidth: el.style.minWidth,
-      minHeight: el.style.minHeight,
-    };
-
     // Hide ports / selection chrome so they don't appear in the screenshot
     el.classList.add("is-capturing");
 
     try {
-      let maxX = 800;
-      let maxY = 600;
+      const exportPadding = 96;
+      let maxX = nodes.length ? exportPadding : 800;
+      let maxY = nodes.length ? exportPadding : 600;
       for (const n of nodes) {
         const card = el.querySelector(
           `[data-node-id="${n.id}"]`,
         ) as HTMLElement | null;
         const h = card?.offsetHeight ?? 200;
-        maxX = Math.max(maxX, n.x + n.width + 80);
-        maxY = Math.max(maxY, n.y + h + 80);
+        maxX = Math.ceil(Math.max(maxX, n.x + n.width + exportPadding));
+        maxY = Math.ceil(Math.max(maxY, n.y + h + exportPadding));
       }
-      el.style.minWidth = `${maxX}px`;
-      el.style.minHeight = `${maxY}px`;
-      el.style.width = `${maxX}px`;
-      el.style.height = `${maxY}px`;
 
-      // Let the browser paint without UI chrome before capture
+      // Let the browser apply capture-only styles before cloning the world.
       await new Promise<void>((resolve) =>
         requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
       );
 
       // Default: copy image to clipboard for quick paste sharing
-      await copyElementAsPng(el);
+      await copyElementAsPng(el, {
+        width: maxX,
+        height: maxY,
+        detached: true,
+      });
       setStatus("整图已复制到剪贴板，可直接 Ctrl+V 粘贴");
     } catch (e) {
       setError(e instanceof Error ? e.message : "复制图片失败");
     } finally {
       el.classList.remove("is-capturing");
-      el.style.width = prev.width;
-      el.style.height = prev.height;
-      el.style.minWidth = prev.minWidth;
-      el.style.minHeight = prev.minHeight;
       setIsExporting(false);
     }
   };
@@ -434,7 +424,11 @@ function App() {
     setStatus(null);
     world?.classList.add("is-capturing");
     try {
-      await copyElementAsPng(card);
+      await copyElementAsPng(card, {
+        width: Math.ceil(card.offsetWidth),
+        height: Math.ceil(card.offsetHeight),
+        detached: true,
+      });
       setStatus("选中节点已复制到剪贴板，可直接 Ctrl+V 粘贴");
     } catch (e) {
       setError(e instanceof Error ? e.message : "复制节点失败");

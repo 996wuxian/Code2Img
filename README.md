@@ -1,8 +1,18 @@
-# code2img
+<h1 align="center">code2img</h1>
 
 把代码片段编排成一张可分享的关系图。code2img 是一个用 **Tauri 2 + React + TypeScript** 构建的桌面应用，支持多代码节点、弧线连接、语法高亮主题和高清 PNG 导出。
 
 ![code2img preview](public/img.png)
+
+## 预览
+
+### 导出整图
+
+![code2img export full canvas](public/img2.png)
+
+### 复制单图
+
+![code2img copy single node](public/img3.png)
 
 ## 特性
 
@@ -25,8 +35,8 @@
 
 Windows release 包构建后会生成：
 
-- NSIS 安装包：`src-tauri/target/release/bundle/nsis/code2img_0.1.1_x64-setup.exe`
-- MSI 安装包：`src-tauri/target/release/bundle/msi/code2img_0.1.1_x64_en-US.msi`
+- NSIS 安装包：`src-tauri/target/release/bundle/nsis/code2img_0.1.2_x64-setup.exe`
+- MSI 安装包：`src-tauri/target/release/bundle/msi/code2img_0.1.2_x64_en-US.msi`
 - 免安装可执行文件：`src-tauri/target/release/code2img.exe`
 
 ## 本地开发
